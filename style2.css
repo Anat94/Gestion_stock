@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+.end {
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2pc;
+}
+
+.title_find {
+    color:#eb7371;
+}
+
+
+.encadre {
+    border: 0.1pc solid black;
+    margin: 2pc;
+    border-radius: 1.5pc;
+}
+
+.buttonp_m {
+    display: flex;
+    justify-content: center;
+}
+
+.moins {
+    /* margin-left: 100pc; */
+    padding-left:  2pc;
+}
+
+.buttonp_m :hover {
+    cursor: pointer;
+}

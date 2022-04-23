@@ -10,6 +10,8 @@ app.use(session({
   cookie: { secure: false }
 }))
 
+app.use(require('./middlewares/flash.js'));
+
 app.set('view engine', 'ejs');
 
 app.use('/assets', express.static('public'));
@@ -19,23 +21,32 @@ app.use(express.json());
 
 app.get('/', function(req, res) {
     res.render('pages/index', {messages: "RAS"});
-
 });
 
 app.post('/search', function(req, res) {
     let name = req.body.name;
 	let size = req.body.size;
-    // res.render('pages/result.ejs', {article: name});
-    console.log(name);
-    console.log(size);
-    if (name && size) {
-        connection.query('SELECT * FROM Habits WHERE Nom = ? AND Taille = ?', [name, size], function(error, results, fields) {
-            if (error) throw error;
-            if (results.length > 0) {
-                res.render('pages/result.ejs', {number: results.length, article: name});
-            } else {
-			}
-        });
+    if (name) {
+        if (isNaN(size) == false) {
+            connection.query('SELECT DISTINCT * FROM Habits WHERE Nom = ?', [name], function(error, results, fields) {
+                if (error) throw error;
+                if (results.length > 0) {
+                    res.render('pages/result.ejs', {results: results, number: results.length, article: name, nb: '1'});
+                } else {
+                    req.session.error = "Il y a une erreure";
+                    req.flash('error', 'Article introuvable !');
+                    res.redirect('/');
+                }
+            });
+        } else {
+            req.session.error = "Il y a une erreure";
+            req.flash('error', "Merci de rentrer une taille valide");
+            res.redirect('/');
+        }
+    } else {
+        req.session.error = "Il y a une erreure";
+        req.flash('error', "Merci de rentrer le nom d'un article");
+        res.redirect('/');
     }
 });
 

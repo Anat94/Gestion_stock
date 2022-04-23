@@ -18,11 +18,15 @@
                 <div class='encadre'>
                 <strong>
                 </strong>
-                Stock :<strong> </strong>
-                <div class="buttonp_m">
-                    <div class="plus" id="click"><i class="fa-solid fa-circle-plus"></i> </div>
-                    <div class="moins"><i class="fa-solid fa-circle-minus"></i> </div>
-                </div>
+                <% for (result of results) { %>
+                    Stock :<strong> <%= result.Nom %> </strong>
+                    Taille :<strong> <%= result.Taille %> </strong>
+                    Quantité :<strong> <%= nb %> </strong>
+                    <div class="buttonp_m">
+                        <div class="plus" id="click"><i class="fa-solid fa-circle-plus"></i> </div>
+                        <div class="moins"><i class="fa-solid fa-circle-minus"></i> </div>
+                    </div>
+                <% } %>
                 </div>
             </center>
     <script type="module" src="index.js"></script>

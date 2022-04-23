@@ -15,3 +15,8 @@
             <a href="/" class="header item">Accueil</a>
         </div>
         <div class="ui main container">
+            <% if (locals.flash && locals.flash.error) { %>
+                <div class="ui negative message">
+                    <%= flash.error %>
+                </div>
+            <% } %>

@@ -31,7 +31,17 @@ app.post('/add_one', function(req, res) {
         if (err) throw err;
         console.log("Ajouté !");
     });
-    console.log("TROUVE !");
+    res.redirect('/');
+});
+
+app.post('/del_one', function(req, res) {
+    let query = `UPDATE Habits SET Quantite = Quantite - 1 WHERE NOM = ? AND Taille = ?;`;
+    let userName = "75A12";
+    let userAddress = "1";
+    connection.query(query, [userName, userAddress], (err, rows) => {
+        if (err) throw err;
+        console.log("Enlevé !");
+    });
     res.redirect('/');
 });
 

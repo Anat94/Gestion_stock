@@ -28,23 +28,25 @@ app.post('/search', function(req, res) {
 	let size = req.body.size;
     if (name) {
         if (isNaN(size) == false) {
-            connection.query('SELECT DISTINCT * FROM Habits WHERE Nom = ?', [name], function(error, results, fields) {
+            connection.query('SELECT * FROM Habits WHERE Nom = ?', [name], function(error, results, fields) {
                 if (error) throw error;
                 if (results.length > 0) {
-                    res.render('pages/result.ejs', {results: results, number: results.length, article: name, nb: '1'});
+                    let tab = [];
+                    let a = 0;
+                    res.render('pages/result.ejs', {results: results, number: results.length, article: name, nb: "u"});
                 } else {
-                    req.session.error = "Il y a une erreure";
+                    req.session.error = "Il y a une erreur";
                     req.flash('error', 'Article introuvable !');
                     res.redirect('/');
                 }
             });
         } else {
-            req.session.error = "Il y a une erreure";
+            req.session.error = "Il y a une erreur";
             req.flash('error', "Merci de rentrer une taille valide");
             res.redirect('/');
         }
     } else {
-        req.session.error = "Il y a une erreure";
+        req.session.error = "Il y a une erreur";
         req.flash('error', "Merci de rentrer le nom d'un article");
         res.redirect('/');
     }

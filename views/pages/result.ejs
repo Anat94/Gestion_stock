@@ -18,14 +18,21 @@
                 <div class='encadre'>
                 <strong>
                 </strong>
-                <% for (result of results) { %>
-                    Stock :<strong> <%= result.Nom %> </strong>
-                    Taille :<strong> <%= result.Taille %> </strong>
-                    Quantité :<strong> <%= nb %> </strong>
-                    <div class="buttonp_m">
-                        <div class="plus" id="click"><i class="fa-solid fa-circle-plus"></i> </div>
-                        <div class="moins"><i class="fa-solid fa-circle-minus"></i> </div>
-                    </div>
+                <% for (i = 0; i < results.length; i++) { %>
+                    <% var nb = 1 %>
+                    <% for (a = 0; a < i; a++) { %>
+                        <% if (results[i].Taille === results[a].Taille) { %>
+                            <% nb++ %>
+                        <% } else { %>
+                            Stock :<strong> <%= results[i].Nom %> </strong>
+                            Taille :<strong> <%= results[i].Taille %> </strong>
+                            Quantité :<strong> <%= nb %> </strong>
+                            <div class="buttonp_m">
+                                <div class="plus" id="click"><i class="fa-solid fa-circle-plus"></i> </div>
+                                <div class="moins"><i class="fa-solid fa-circle-minus"></i> </div>
+                            </div>
+                        <% } %>
+                    <% } %>
                 <% } %>
                 </div>
             </center>

@@ -4,18 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../client/result.css">
     <script src="https://kit.fontawesome.com/a2db49bfe2.js" crossorigin="anonymous"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/style.css">
     <title>Document</title>
 </head>
 <body class="end">
     <center><h1 class='title_find'>Il y a <%= number %> articles avec la référence : <%= article %> !</h1><br></center>
         <center><h3>Voici les tailles disponibles:</h3><br></center>
             <center>
-                <div class='encadre'>
                 <strong>
                 </strong>
                 <% for (i = 0; i < results.length; i++) { %>
@@ -23,18 +21,19 @@
                     <% for (a = 0; a < i; a++) { %>
                         <% if (results[i].Taille === results[a].Taille) { %>
                             <% nb++ %>
-                        <% } else { %>
-                            Stock :<strong> <%= results[i].Nom %> </strong>
-                            Taille :<strong> <%= results[i].Taille %> </strong>
-                            Quantité :<strong> <%= nb %> </strong>
-                            <div class="buttonp_m">
-                                <div class="plus" id="click"><i class="fa-solid fa-circle-plus"></i> </div>
-                                <div class="moins"><i class="fa-solid fa-circle-minus"></i> </div>
+                            <% } else { %>
+                            <div class='encadre'>
+                                Stock :<strong> <%= results[i].Nom %> </strong>
+                                Taille :<strong> <%= results[i].Taille %> </strong>
+                                Quantité :<strong> <%= nb %> </strong>
+                                <div class="buttonp_m">
+                                    <div class="plus" id="click"><i class="fa-solid fa-circle-plus"></i> </div>
+                                    <div class="moins"><i class="fa-solid fa-circle-minus"></i> </div>
+                                </div>
                             </div>
                         <% } %>
                     <% } %>
                 <% } %>
-                </div>
             </center>
     <script type="module" src="index.js"></script>
 </body>

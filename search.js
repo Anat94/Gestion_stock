@@ -23,6 +23,18 @@ app.get('/', function(req, res) {
     res.render('pages/index', {messages: "RAS"});
 });
 
+app.post('/add_one', function(req, res) {
+    let query = `UPDATE Habits SET Quantite = Quantite + 1 WHERE NOM = ? AND Taille = ?;`;
+    let userName = "75A12";
+    let userAddress = "1";
+    connection.query(query, [userName, userAddress], (err, rows) => {
+        if (err) throw err;
+        console.log("Ajouté !");
+    });
+    console.log("TROUVE !");
+    res.redirect('/');
+});
+
 app.post('/search', function(req, res) {
     let name = req.body.name;
 	let size = req.body.size;
@@ -33,7 +45,7 @@ app.post('/search', function(req, res) {
                 if (results.length > 0) {
                     let tab = [];
                     let a = 0;
-                    res.render('pages/result.ejs', {results: results, number: results.length, article: name, nb: "u"});
+                    res.render('pages/result.ejs', {results: results, number: results.length, article: name});
                 } else {
                     req.session.error = "Il y a une erreur";
                     req.flash('error', 'Article introuvable !');

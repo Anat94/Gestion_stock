@@ -25,8 +25,9 @@ app.get('/', function(req, res) {
 
 app.post('/add_one', function(req, res) {
     let query = `UPDATE Habits SET Quantite = Quantite + 1 WHERE NOM = ? AND Taille = ?;`;
-    let userName = "75A12";
-    let userAddress = "1";
+    console.log(req.body);
+    let userName = req.Nom; //! Le nom du front
+    let userAddress = "1"; //! La taille du front
     connection.query(query, [userName, userAddress], (err, rows) => {
         if (err) throw err;
         console.log("Ajouté !");
@@ -34,9 +35,10 @@ app.post('/add_one', function(req, res) {
     res.redirect('/');
 });
 
+
 app.post('/del_one', function(req, res) {
     let query = `UPDATE Habits SET Quantite = Quantite - 1 WHERE NOM = ? AND Taille = ?;`;
-    let userName = "75A12";
+    let userName = req.body.name;
     let userAddress = "1";
     connection.query(query, [userName, userAddress], (err, rows) => {
         if (err) throw err;

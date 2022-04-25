@@ -1,38 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/a2db49bfe2.js" crossorigin="anonymous"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/style.css">
-    <title>Document</title>
-</head>
-<body class="end">
-    <center><h1 class='title_find'>Il y a <%= number %> articles avec la référence : <%= article %> !</h1><br></center>
-        <center><h3>Voici les tailles disponibles:</h3><br></center>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/a2db49bfe2.js" crossorigin="anonymous"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/style.css">
+        <title>Document</title>
+    </head>
+    <body class="end">
+        <center><h1 class='title_find'>Il y a <%= number %> articles avec la référence : <%= article %> !</h1><br></center>
+            <center><h3>Voici les tailles disponibles:</h3><br></center>
             <center>
-                <strong>
-                </strong>
                 <% for (i = 0; i < results.length; i++) { %>
                     <div class='encadre'>
-                        Stock :<strong> <%= results[i].Nom %> </strong>
-                        Taille :<strong> <%= results[i].Taille %> </strong>
-                        Quantité :<strong> <%= results[i].Quantite %> </strong>
-                    <div class="buttonp_m">
-                        <form action="/add_one" method="post">
-                            <!-- <div class="plus" action="/add_one" ><i class="fa-solid fa-circle-plus"></i> </div> -->
-                            <button class="ui button" type="submit">ADD</button>
-                        </form>
-                        <form action="/del_one" method="post">
-                            <button class="ui button" type="submit">MINUS</button>
-                        </form>
-                        </div>
+                        <div id = "Name">Stock : <%= results[i].Nom %></div>
+                        <div id = "Size">Taille : <%= results[i].Taille %></div>
+                        Quantité : <%= results[i].Quantite %>
                     </div>
                 <% } %>
             </center>
-    <script type="module" src="index.js"></script>
-</body>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </body>
 </html>
